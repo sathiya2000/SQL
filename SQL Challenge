@@ -1,1 +1,15 @@
-#
+CREATE DATABASE sathiya;
+
+show DATABASES;
+show TABLES;
+
+CREATE Table city
+(
+    ID INT,
+    Name VARCHAR(17),
+    countryCode VARCHAR(3),
+    District VARCHAR(20),
+    Population INT
+);
+
+Insert INTO city VALUES(6,'Rotterdam','NLD','Zuid-Holland',593321),(3878,'Scottsdale','USA','Arizona',202705)
