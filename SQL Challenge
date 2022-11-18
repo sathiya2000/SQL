@@ -4,7 +4,7 @@ show DATABASES;
 show TABLES;
 
 
-# Dataset 1
+# Sample Dataset - 1
 CREATE Table city
 (
     ID INT,
@@ -19,3 +19,21 @@ Insert INTO city VALUES(6,'Rotterdam','NLD','Zuid-Holland',593321),(3878,'Scotts
                        (4054,'Fairfield','USA','California',92256),(4058,'Boulder','USA','Colorado',91238),(4061,'Fall River','USA','Massachusetts',90555); 
 
 SELECT * from city;
+
+# Q1 - Query all columns for all American cities in the CITY table with populations larger than 100000
+SELECT * from city WHERE countryCode = 'USA' and Population > 100000;
+
+# Q2 - Query the NAME field for all American cities in the CITY table with populations larger than 120000
+SELECT Name,Population from city WHERE countryCode = 'USA' and Population > 120000;
+
+# Q3 - Query all columns (attributes) for every row in the CITY table
+select * from city;
+
+# Q4 - Query all columns for a city in CITY with the ID 1661 or 6(ID - 6 is what mentioned in the sample dataset)
+select * from city where id = 6;
+
+# Q5 - Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN(But there is no record for JPN cities)
+SELECT * from city WHERE countryCode = 'JPN';
+
+# Q6 - Query the names of all the Japanese cities in the CITY table. The COUNTRYCODE for Japan is JPN
+SELECT Name from city WHERE countryCode = 'JPN';
