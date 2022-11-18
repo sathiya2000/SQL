@@ -39,3 +39,18 @@ select city, length(city) as size from station order by size asc,city asc limit 
 
 // Q11 - Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates
 select city from station where (city like 'A%' or city like 'E%' or city like 'I%' or city like 'O%' or city like 'U%');
+
+// Q12 - Query the list of CITY names ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates
+select distinct city from station where (city like '%a' or city like '%e' or city like '%i' or city like '%o' or city like '%u');
+
+// Q13 - Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+select distinct city from station where not (city like 'A%' or city like 'E%' or city like 'I%' or city like 'O%' or city like 'U%');
+
+// Q14 - Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+select distinct city from station where not(city like '%a' or city like '%e' or city like '%i' or city like '%o' or city like '%u');
+
+// Q15 - Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '[^AEIOU].*[^aeiou]$';
+
+// Q16 - Query the list of CITY names from STATION that start with vowels or end with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '[AEIOU].*[aeiou]$';
