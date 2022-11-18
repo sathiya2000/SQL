@@ -83,3 +83,36 @@ SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '[^AEIOU].*[^aeiou]$';
 // Q16 - Query the list of CITY names from STATION that start with vowels or end with vowels
 SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '[AEIOU].*[aeiou]$';
 
+--------------------------------------
+
+# Q17
+CREATE TABLE Product
+(
+    product_id int,
+    product_name VARCHAR(20),
+    unit_price int,
+    UNIQUE(product_id)
+);
+
+CREATE Table Sales
+(
+    seller_id int,
+    product_id int,
+    buyer_id int,
+    sales_date DATE,
+    quantity INT,
+    price INT
+);
+
+Insert INTO Product VALUES(1,'S8',1000),(2,'G4',800),(3,'iPhone',1400),(4,'Moto G82', 1900);
+
+INSERT INTO Sales VALUES(1,1,1,'2019-01-21',2,2000),(1,2,2,'2019-02-17',1,800),(2,2,3,'2019-06-02',1,800),(3,3,4,'2019-05-13',2,2800);
+
+SELECT * from Product;
+SELECT * from Sales;
+
+# Q17 - Write an SQL query that reports the products that were only sold in the first quarter of 2019. That is, between 2019-01-01 and 2019-03-31 inclusive.
+select p.product_id, p.product_name from Product p INNER JOIN 
+(SELECT product_id, MAX(sales_date) as s_max from Sales GROUP BY product_id) s1 
+on p.product_id = s1.product_id where s1.s_max < '2019-03-31';
+
