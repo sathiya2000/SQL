@@ -116,3 +116,23 @@ select p.product_id, p.product_name from Product p INNER JOIN
 (SELECT product_id, MAX(sales_date) as s_max from Sales GROUP BY product_id) s1 
 on p.product_id = s1.product_id where s1.s_max < '2019-03-31';
 
+-----------------------
+
+# Q18
+CREATE TABLE Views
+(
+    article_id int,
+    author_id int,
+    viewer_id int,
+    view_date date
+);
+
+INSERT INTO Views VALUES(1,3,5,'2019-08-01'),(1,3,6,'2019-08-02'),(2,7,7,'2019-08-01'),(2,7,6,'2019-08-02'),
+                        (4,7,1,'2019-07-22'),(3,4,4,'2019-07-21'),(3,4,4,'2019-07-21');
+
+SELECT * from Views;
+
+# Q18 - Write an SQL query to find all the authors that viewed at least one of their own articles.
+select distinct author_id as id from Views where author_id in (select viewer_id from Views)
+ORDER BY author_id ASC;
+
