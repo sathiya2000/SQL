@@ -83,3 +83,9 @@ CASE
     else NULL
 end as team_id from Employee
 ORDER BY emp_id ASC;
+
+// Q24 - Write an SQL query to report the first login date for each player
+select player_id, MIN(event_date) from Activity GROUP BY player_id;
+
+// Q25 - Write an SQL query to report the device that is first logged in for each player
+SELECT player_id, MIN(device_id) FROM Activity GROUP BY player_id;
