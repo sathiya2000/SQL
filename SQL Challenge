@@ -202,3 +202,22 @@ CASE
 end as team_id from Employee
 ORDER BY emp_id ASC;
 
+# Q24 / Q25
+CREATE TABLE Activity
+(
+    player_id int,
+    device_id int,
+    event_date date,
+    games_played int
+);
+
+INSERT INTO Activity VALUES(1,2,'2016-03-01',5),(1,2,'2016-05-02',6),(2,3,'2017-06-25',1),(3,1,'2016-03-02',0),(3,4,'2018-07-03',5);
+
+select * from Activity;
+
+# Q24 - Write an SQL query to report the first login date for each player
+select player_id, MIN(event_date) from Activity GROUP BY player_id;
+
+# Q25 - Write an SQL query to report the device that is first logged in for each player
+SELECT player_id, MIN(device_id) FROM Activity GROUP BY player_id;
+
