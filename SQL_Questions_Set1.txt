@@ -63,3 +63,23 @@ on p.product_id = s1.product_id where s1.s_max < '2019-03-31';
 // Q18 - Write an SQL query to find all the authors that viewed at least one of their own articles.
 select distinct author_id as id from Views where author_id in (select viewer_id from Views)
 ORDER BY author_id ASC;
+
+// Q19 - Write an SQL query to find the percentage of immediate orders in the table, rounded to 2 decimal places
+SELECT ifnull(
+    round(
+        (SELECT count(*) from Delivery WHERE order_date = cust_pref_delivery_date) / (count(delivery_id)) * 100, 2)
+    , NULL
+)
+as immediate_percent from Delivery;
+
+// Q21 - Write an SQL query to find the team size of each of the employees.
+select emp_id, COUNT(*) over (partition by team_id) as team_id
+from Employee ORDER BY emp_id ASC;
+
+# using CASE statement
+select emp_id,
+CASE
+    when team_id is NOT NULL then  count(*) over (partition by team_id)
+    else NULL
+end as team_id from Employee
+ORDER BY emp_id ASC;
