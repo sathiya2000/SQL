@@ -136,3 +136,69 @@ SELECT * from Views;
 select distinct author_id as id from Views where author_id in (select viewer_id from Views)
 ORDER BY author_id ASC;
 
+------------
+
+#Q19
+CREATE TABLE Delivery
+(
+    delivery_id int,
+    cust_id int,
+    order_date date,
+    cust_pref_delivery_date date,
+    PRIMARY KEY(delivery_id)
+);
+
+INSERT INTO Delivery VALUES(1,1,'2019-08-01','2019-08-02'),(2,5,'2019-08-02','2019-08-02'),(3,1,'2019-08-11','2019-08-11'),(4,3,'2019-08-24','2019-08-26'),
+                            (5,4,'2019-08-21','2019-08-22'),(6,2,'2019-08-11','2019-08-13');
+
+
+SELECT * from Delivery;
+
+# Q19 - Write an SQL query to find the percentage of immediate orders in the table, rounded to 2 decimal places
+SELECT ifnull(
+    round(
+        (SELECT count(*) from Delivery WHERE order_date = cust_pref_delivery_date) / (count(delivery_id)) * 100, 2)
+    , NULL
+)
+as immediate_percent from Delivery;
+
+# Q20
+CREATE TABLE Ads
+(
+    ad_id int,
+    user_id int,
+    action enum('Clicked','Viewed','Ignored')NOT NULL,
+    PRIMARY KEY(ad_id, user_id)
+);
+
+INSERT INTO Ads VALUES(1,1,'Clicked'),(2,2,'Clicked'),(3,3,'Viewed'),(5,5,'Ignored'),(1,7,'Ignored'),(2,7,'Viewed'),(3,5,'Clicked'),(1,4,'Viewed'),(2,11,'Viewed'),(1,2,'Clicked');
+
+SELECT * FROM Ads;
+
+# Q20 - Write an SQL query to find the ctr of each Ad. Round ctr to two decimal points
+
+
+
+# Q21
+CREATE TABLE Employee
+(
+    emp_id int,
+    team_id int
+);
+
+INSERT INTO Employee VALUES(1,8),(2,8),(3,8),(4,7),(5,9),(6,9);
+
+SELECT * FROM Employee;
+
+# Q21 - Write an SQL query to find the team size of each of the employees.
+select emp_id, COUNT(*) over (partition by team_id) as team_id
+from Employee ORDER BY emp_id ASC;
+
+# using CASE statement
+select emp_id,
+CASE
+    when team_id is NOT NULL then  count(*) over (partition by team_id)
+    else NULL
+end as team_id from Employee
+ORDER BY emp_id ASC;
+
