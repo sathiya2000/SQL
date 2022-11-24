@@ -221,3 +221,19 @@ select player_id, MIN(event_date) from Activity GROUP BY player_id;
 # Q25 - Write an SQL query to report the device that is first logged in for each player
 SELECT player_id, MIN(device_id) FROM Activity GROUP BY player_id;
 
+# Q44
+CREATE TABLE employees
+(
+    emp_id int,
+    emp_name varchar(20),
+    dept varchar(5),
+    man_id int
+);
+
+INSERT INTO employees VALUES(101,'John','A',NULL),(102,'Dan','A',101),(103,'James','A',101),(104,'Amy','A',101),(105,'Anne','A',101),(106,'Ron','B',101);
+
+SELECT * FROM employees;
+# Q44 - Write an SQL query to report the managers with at least five direct reports
+SELECT emp_name from employees where emp_id in(
+select man_id from employees GROUP BY man_id HAVING count(emp_id) >= 5);
+
