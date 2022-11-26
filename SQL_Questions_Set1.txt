@@ -94,3 +94,7 @@ SELECT player_id, MIN(device_id) FROM Activity GROUP BY player_id;
 // Q44 - Write an SQL query to report the managers with at least five direct reports
 SELECT emp_name from employees where emp_id in(
 select man_id from employees GROUP BY man_id HAVING count(emp_id) >= 5);
+
+// Q27 - Write an SQL query to find the users who have valid emails
+SELECT * FROM Users where email REGEXP ('^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com');
+SELECT * FROM Users WHERE REGEXP_LIKE (email, '^[a-zA-Z][a-zA-Z0-9\_\.\-]*@leetcode.com');
