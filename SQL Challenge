@@ -254,3 +254,30 @@ SELECT * FROM Users;
 SELECT * FROM Users where email REGEXP ('^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com');
 SELECT * FROM Users WHERE REGEXP_LIKE (email, '^[a-zA-Z][a-zA-Z0-9\_\.\-]*@leetcode.com');
 
+-----------------------
+
+#Q52
+CREATE TABLE Customer
+(
+    id int,
+    name  varchar(10),
+    ref_id int
+);
+
+INSERT INTO Customer VALUES(1,'Will',NULL),(2,'Jane',NULL),(3,'Alex',2),(4,'Bill',NULL),(5,'Zack',1),(6,'Mark',2);
+
+SELECT * FROM Customer;
+
+# Q52 - Write an SQL query to report the names of the customer that are not referred by the customer with id = 2
+SELECT name FROM Customer where ref_id is NULL
+UNION
+SELECT name FROM Customer where ref_id != 2;
+
+SELECT
+CASE
+    when ref_id != 2 
+    OR 
+    ref_id is NULL then name
+end as name
+FROM Customer;
+
