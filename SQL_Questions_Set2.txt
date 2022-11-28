@@ -1,3 +1,7 @@
+// Q51 - Write an SQL query to report the name, population, and area of the big countries
+SELECT name, population, area FROM World WHERE population >= 25000000 OR area >= 3000000;
+
+
 // Q52 - Write an SQL query to report the names of the customer that are not referred by the customer with id = 2
 SELECT name FROM Customer where ref_id is NULL
 UNION
