@@ -18,3 +18,6 @@ SELECT name as Customers from Customers
 WHERE id NOT IN(SELECT cust_id FROM Orders);
 
 // Q54 and 56 are repeated from Set1
+
+# Q57 - Write an SQL query to find the customer_number for the customer who has placed the largest number of orders
+SELECT cust_number FROM order_num GROUP BY cust_number ORDER BY COUNT(order_number) DESC LIMIT 1;
