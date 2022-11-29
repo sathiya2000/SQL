@@ -333,3 +333,17 @@ WHERE id NOT IN(SELECT cust_id FROM Orders);
 
 -----------
 
+
+# Q57 
+CREATE TABLE order_num
+(
+    order_number int,
+    cust_number int
+);
+
+INSERT INTO order_num VALUES(1,1),(2,2),(3,3),(4,3);
+
+SELECT * FROM order_num;
+
+# Q57 - Write an SQL query to find the customer_number for the customer who has placed the largest number of orders
+SELECT cust_number FROM order_num GROUP BY cust_number ORDER BY COUNT(order_number) DESC LIMIT 1;
