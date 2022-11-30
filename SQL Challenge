@@ -364,3 +364,25 @@ SELECT * FROM Cinema;
 # Q58 - Write an SQL query to report all the consecutive available seats in the cinema
 SELECT DISTINCT c1.seat_id FROM Cinema c1 JOIN Cinema c2 ON abs(c1.seat_id - c2.seat_id) = 1 AND c1.free = 1 and c2.free = 1
 ORDER BY c1.seat_id;
+
+---------------
+
+# Q60
+CREATE TABLE Triangle
+(
+    x int,
+    y int,
+    z int
+);
+
+INSERT INTO Triangle VALUES(13,15,30),(10,20,15);
+
+SELECT * FROM Triangle;
+
+# Q60 - Write an SQL query to report for every three line segments whether they can form a triangle
+SELECT *,
+CASE
+    when x+y <= z OR x+z <=y OR y+z <= x then "No"
+    else "Yes" 
+end as Triangle
+FROM Triangle;
