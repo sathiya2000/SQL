@@ -386,3 +386,63 @@ CASE
     else "Yes" 
 end as Triangle
 FROM Triangle;
+
+----------
+
+# Q61
+CREATE TABLE Point
+(
+    x int
+);
+
+INSERT INTO Point VALUES(-1),(0),(2);
+
+SELECT * FROM Point;
+
+SELECT MIN(abs(p2.x - p1.x)) as shortest
+FROM Point p1 JOIN Point p2
+ON p1.x != p2.x;
+
+-----------
+
+-------------
+# Q101(window fn - dense rank)
+
+---------
+# Q102 - same as Q101
+
+# Q103 
+CREATE TABLE students
+(
+    id int,
+    name varchar(20),
+    marks int
+);
+
+INSERT INTO students VALUES(1,'Ashley',81),(2,'Samantha',75),(3,'Julia',76),(3,'Belvet',84);
+
+SELECT * FROM students;
+
+# Q103 - Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name
+SELECT name FROM students WHERE marks > 75 ORDER BY RIGHT(name, 3) ASC;
+
+-----------
+# Q104 
+CREATE TABLE employee
+(
+    emp_id int,
+    name varchar(20),
+    months int,
+    salary int
+);
+
+INSERT INTO employee VALUES(12228,'Rose',15,1968),(33645,'Angela',1,3443),(45692,'Frank',17,1608),(56118,'Patrick',7,1345),(59725,'Lisa',11,2330),(74197,'Kimberly',16,4372),(78454,'Bonnie',8,1771),(83565,'Michael',6,2017),(98607,'Todd',5,3396),(99989,'Joe',9,3573);
+
+SELECT * FROM employee;
+
+# Q104 - Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order
+SELECT name FROM employee ORDER BY name ASC;
+
+# Q105 - Write a query that prints a list of employee names (i.e.: the name attribute) for employees in
+# Employee having a salary greater than $2000 per month who have been employees for less than 10 months
+SELECT name FROM employee WHERE salary > 2000 AND months < 10 ORDER BY emp_id ASC;
