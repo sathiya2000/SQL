@@ -8,3 +8,19 @@ SELECT name FROM employee ORDER BY name ASC;
 # Q105 - Write a query that prints a list of employee names (i.e.: the name attribute) for employees in
 # Employee having a salary greater than $2000 per month who have been employees for less than 10 months
 SELECT name FROM employee WHERE salary > 2000 AND months < 10 ORDER BY emp_id ASC;
+
+# Q106 - Write a query identifying the type of each record in the TRIANGLES table using its three side lengths
+SELECT
+CASE
+    when a+b <= c OR b+c <= a OR a+c <= b then "Not A Triangle"
+    when a = b AND b = c then "Equilateral"
+    when a=b OR b=c OR c=a then "Isosceles"
+    when a != b AND b != c then "Scalene" 
+end as Types
+FROM Triangle;
+
+# Q107 - Write a query calculating the amount of error (i.e.: actual - miscalculated average monthly salaries), and round it up to the next integer
+SELECT round(AVG(salary)) - round(AVG(replace(salary,0,''))) as avg_sal FROM salary;
+
+# Q108 - Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings
+select max(salary * months) as max_sal, count(*) as count FROM employee WHERE (salary * months) in (SELECT max(salary * months) FROM employee);
