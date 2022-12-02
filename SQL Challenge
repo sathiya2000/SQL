@@ -490,3 +490,22 @@ SELECT * from salary;
 SELECT round(AVG(salary)) - round(AVG(replace(salary,0,''))) as avg_sal FROM salary;
 
 -------------
+
+# Q109
+CREATE TABLE Occupation
+(
+    name varchar(20),
+    occupation varchar(20)
+);
+
+INSERT INTO Occupation VALUES('Samantha','Doctor'),('Julia','Actor'),('Maria','Actor'),('Meera','Singer'),('Ashley','Professor'),('Ketty','Professor'),('Christeen','Professor'),('Jane','Actor'),('Jenny','Doctor'),('Priya','Singer');
+
+SELECT * FROM Occupation;
+
+# Q109 - Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical
+SELECT name,substring(occupation,1,1) occupation FROM Occupation ORDER BY name ASC;
+
+# Q109 - Query the number of occurrences of each occupation in OCCUPATIONS
+SELECT COUNT(occupation) as counts, occupation FROM Occupation GROUP BY occupation ORDER BY counts ASC;
+
+--------------
