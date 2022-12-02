@@ -24,3 +24,9 @@ SELECT round(AVG(salary)) - round(AVG(replace(salary,0,''))) as avg_sal FROM sal
 
 # Q108 - Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings
 select max(salary * months) as max_sal, count(*) as count FROM employee WHERE (salary * months) in (SELECT max(salary * months) FROM employee);
+
+# Q109 - Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical
+SELECT name,substring(occupation,1,1) occupation FROM Occupation ORDER BY name ASC;
+
+# Q109 - Query the number of occurrences of each occupation in OCCUPATIONS
+SELECT COUNT(occupation) as counts, occupation FROM Occupation GROUP BY occupation ORDER BY counts ASC;
