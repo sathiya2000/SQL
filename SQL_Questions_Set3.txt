@@ -30,3 +30,12 @@ SELECT name,substring(occupation,1,1) occupation FROM Occupation ORDER BY name A
 
 # Q109 - Query the number of occurrences of each occupation in OCCUPATIONS
 SELECT COUNT(occupation) as counts, occupation FROM Occupation GROUP BY occupation ORDER BY counts ASC;
+
+# Q111 - Write a query to find the node type of Binary Tree ordered by the value of the node
+SELECT n,
+CASE 
+    when n NOT IN(SELECT p FROM node WHERE p is NOT NULL) then 'Leaf'
+    when p is NULL then 'Root'
+    else 'Inner'
+end as node_type
+from node ORDER BY n ASC;
