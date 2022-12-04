@@ -46,3 +46,6 @@ SELECT actor_id,dir_id FROM act_dir GROUP BY actor_id,dir_id HAVING count(*) >= 
 
 # Q63 - Write an SQL query that reports the product_name, year, and price for each sale_id in the Sales table
 SELECT p.product_name,s.year,s.price FROM Product p INNER JOIN Sales s ON s.product_id = p.product_id;
+
+# Q64 - Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits
+SELECT p.project_id, round(AVG(exp),2) as avg_years FROM Employee e INNER JOIN Project p ON p.emp_id = e.emp_id GROUP BY project_id;
