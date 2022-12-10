@@ -49,3 +49,8 @@ SELECT p.product_name,s.year,s.price FROM Product p INNER JOIN Sales s ON s.prod
 
 # Q64 - Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits
 SELECT p.project_id, round(AVG(exp),2) as avg_years FROM Employee e INNER JOIN Project p ON p.emp_id = e.emp_id GROUP BY project_id;
+
+// Q65 - Write an SQL query that reports the best seller by total sales price, If there is a tie, report them all
+SELECT seller_id, MAX(tot) as price FROM (SELECT seller_id,SUM(price) as tot FROM Sales GROUP BY seller_id) foo GROUP BY seller_id ORDER BY price DESC LIMIT 2;
+
+SELECT top 1 with ties seller_id,SUM(price) as tot FROM Sales GROUP BY seller_id ORDER BY tot DESC;
