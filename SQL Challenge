@@ -635,3 +635,6 @@ SELECT SUM(price) FROM Sales GROUP BY seller_id;
 SELECT seller_id, MAX(tot) as price FROM (SELECT seller_id,SUM(price) as tot FROM Sales GROUP BY seller_id) foo GROUP BY seller_id ORDER BY price DESC LIMIT 2;
 
 SELECT top 1 with ties seller_id,SUM(price) as tot FROM Sales GROUP BY seller_id ORDER BY tot DESC;
+
+# Q66
+SELECT s.buyer_id FROM Product p JOIN Sales s ON p.product_id = s.product_id GROUP BY s.buyer_id having sum(p.product_id = 1) > 0 AND sum(p.product_id = 3) = 0;
